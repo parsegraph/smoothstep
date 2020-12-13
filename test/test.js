@@ -1,8 +1,10 @@
 var assert = require("assert");
-import todo from "../dist/smoothstep";
+import smoothstep from "../dist/smoothstep";
 
-describe("Package", function () {
+describe("smoothstep", function () {
   it("works", ()=>{
-    assert.equal(todo(), 42);
+    assert.equal(smoothstep(1), 1);
+    assert.equal(smoothstep(0), 0);
+    assert.ok(smoothstep(0.5));
   });
 });
