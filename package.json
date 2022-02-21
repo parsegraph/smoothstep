@@ -1,17 +1,9 @@
 {
   "name": "parsegraph-smoothstep",
-  "version": "1.4.2-dev",
+  "version": "1.4.2",
   "description": "smoothstep",
-  "main": "dist/parsegraph-smoothstep.js",
-  "types": "dist/parsegraph-smoothstep.d.ts",
-  "scripts": {
-    "coverage": "nyc npm run test",
-    "test": "mocha -r @babel/register -r jsdom-global/register --recursive",
-    "demo": "node demo/demo.js",
-    "autobuild": "webpack --watch --config webpack.config.js",
-    "build": "webpack --config webpack.config.js",
-    "build-prod": "NODE_ENV=production webpack --config webpack.prod.js"
-  },
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/parsegraph/smoothstep.git"
@@ -22,19 +14,6 @@
     "url": "https://github.com/parsegraph/smoothstep/issues"
   },
   "homepage": "https://github.com/parsegraph/smoothstep#readme",
-  "nyc": {
-    "extends": "@istanbuljs/nyc-config-babel",
-    "reporter": [
-      "text-summary",
-      "html"
-    ],
-    "exclude": [
-      "test/**.js",
-      "dist/**.js"
-    ],
-    "reportDir": "dist/coverage"
-  },
-  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.17.3",
     "@babel/core": "^7.17.5",
