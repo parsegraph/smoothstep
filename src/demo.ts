@@ -1,4 +1,4 @@
-import {smoothlerp} from "./index";
+import { smoothlerp } from "./index";
 
 const PRINT_TRAILERS = false;
 
@@ -34,20 +34,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const trailerDecay = 1.2;
 
-    type Trailer = {
-      startX: number;
-      startY: number;
-      endX: number;
-      endY: number;
-      duration: number;
-      size: number;
-      color: string;
-      startTime: Date;
-      inUse: boolean;
-    };
+  type Trailer = {
+    startX: number;
+    startY: number;
+    endX: number;
+    endY: number;
+    duration: number;
+    size: number;
+    color: string;
+    startTime: Date;
+    inUse: boolean;
+  };
   const trailers: Trailer[] = [];
   let trailerIndex = 0;
-  for(let i = 0; i < 200; ++i) {
+  for (let i = 0; i < 200; ++i) {
     trailers.push({
       inUse: false,
       startX: 0,
@@ -62,18 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const moveContainer = () => {
-    trailerCtx.globalCompositeOperation = 'destination-over';
+    trailerCtx.globalCompositeOperation = "destination-over";
 
     trailerIndex = 0;
-    trailers.forEach(trailer=>{
+    trailers.forEach((trailer) => {
       trailer.inUse = false;
     });
 
-    const addTrailer = (
-      startX: number,
-      startY: number,
-      color: string
-    ) => {
+    const addTrailer = (startX: number, startY: number, color: string) => {
       const trailer = trailers[trailerIndex++];
       trailer.inUse = true;
       trailer.startX = startX;
@@ -105,7 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const numTrailers = Math.floor(minTrailers * Math.random());
     const bg = document.body.style.backgroundColor;
     if (lastPos) {
-      for (let i = 0; i < Math.min(trailers.length, minTrailers + numTrailers); ++i) {
+      for (
+        let i = 0;
+        i < Math.min(trailers.length, minTrailers + numTrailers);
+        ++i
+      ) {
         addTrailer(...lastPos);
       }
     }
@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (
           trailer.inUse &&
           Date.now() - trailer.startTime.getTime() >
-          trailerDecay * trailer.duration
+            trailerDecay * trailer.duration
         ) {
           trailer.inUse = false;
         }
@@ -137,7 +137,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const pct = Math.min(1, elapsed / (trailerDecay * duration));
         trailerCtx.fillStyle = color;
         trailerCtx.beginPath();
-        const curSize = smoothlerp(smoothlerp(1, size, Math.min(1, pct * 5)), 1, pct);
+        const curSize = smoothlerp(
+          smoothlerp(1, size, Math.min(1, pct * 5)),
+          1,
+          pct
+        );
         trailerCtx.ellipse(
           smoothlerp(startX, endX, pct),
           smoothlerp(startY, endY, pct),
