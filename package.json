@@ -1,6 +1,6 @@
 {
   "name": "parsegraph-smoothstep",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "smoothstep",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
